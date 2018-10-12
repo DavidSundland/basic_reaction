@@ -1,0 +1,59 @@
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.2/prop-types.min.js"></script>
+
+<!--
+<script type="text/javascript">
+    const rootElement = document.getElementById('root');
+    const element = document.createElement('div');
+    element.textContent = 'Hello World';
+    element.className = 'container';
+    rootElement.appendChild(element);
+</script>
+-->
+
+<!--
+<script>
+    const rootElement = document.getElementById('root');
+    const element = React.createElement('div', { className: 'container', children: ["Hiya world", 'wham bam', '\blsdf'], title: "here's a title", });
+    ReactDOM.render(element, rootElement);
+    console.log(element);
+</script>
+-->
+
+<script type="text/babel">
+    const rootElement = document.getElementById('root');
+    const props = {
+        children: "Hiya World",
+        className: "myClassName",
+        title: "Here's a title for ya - please note that it is longer than it really needs to be."
+    }
+    const elements =
+        <div {...props} children="Fuck off and die" />
+    const Message = props => <div {...props} />
+
+    function SayHello(props) {
+        return (
+            <div>
+                Hello {props.firstName} {props.lastName}!
+            </div>
+        )
+    }
+
+    SayHello.propTypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+    }
+
+    const element = (
+        <div>
+            {...elements}
+            {...elements}
+            <Message children='Variation on a theme' title= "Here's a title" />
+            <SayHello firstName="Bob" lastName="Bobby" />
+        </div>
+        )
+    ReactDOM.render(element, rootElement);
+</script>
